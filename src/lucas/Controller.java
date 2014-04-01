@@ -17,26 +17,7 @@ public class Controller
 
         this.sortTeilnehmer();
 
-        RumbleModel model = new RumbleModel();
-
-        if (1 < this.runden)
-        {
-            for (int i = 1; i <= this.runden; i++)
-            {
-                //irgendwas stimmt hier nicht
-                System.out.println("Sieger der Runde " + i
-                        + " ist Ritter Nummer "
-                        + model.rumble(this.teilnehmer, false) + "!");
-            }
-        }
-        else
-        {
-            //das geht schon 1a
-            System.out.println("Sieger ist Ritter Nummer "
-                    + model.rumble(this.teilnehmer, true) + "!");
-        }
-
-        System.out.println("done");
+        this.rumble();
     }
 
     public void getParams()
@@ -44,7 +25,7 @@ public class Controller
         Scanner in = new Scanner(System.in);
         int hit;
         System.out
-                .print("Trefferwahrscheinlichkeit (zwischen 1 und 99) für Ritter eingeben oder 0 zum Abbruch\n");
+                .print("Trefferwahrscheinlichkeit (zwischen 1 und 99) für Ritter eingeben oder 0 zum Abbruch.\n");
         do
         {
             System.out.println("Ritter Nummer " + anzahl + " :");
@@ -76,5 +57,27 @@ public class Controller
     {
         SortModel sort = new SortModel(this.teilnehmer);
         this.teilnehmer = sort.bubbleSort();
+    }
+    
+    public void rumble()
+    {
+        RumbleModel model = new RumbleModel();
+
+        if (1 < this.runden)
+        {
+            for (int i = 1; i <= this.runden; i++)
+            {
+                //irgendwas stimmt hier nicht
+                System.out.println("Sieger der Runde " + i
+                        + " ist Ritter Nummer "
+                        + model.rumble(this.teilnehmer, false) + "!");
+            }
+        }
+        else
+        {
+            //das geht schon 1a
+            System.out.println("Sieger ist Ritter Nummer "
+                    + model.rumble(this.teilnehmer, true) + "!");
+        }
     }
 }

@@ -3,7 +3,7 @@ package lucas;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class InputController
+public class Controller
 {
     protected LinkedList<Ritter> teilnehmer = new LinkedList<Ritter>();
 
@@ -11,7 +11,7 @@ public class InputController
 
     protected int runden;
 
-    public void ini()
+    public void run()
     {
         this.getParams();
 
@@ -23,6 +23,7 @@ public class InputController
         {
             for (int i = 1; i <= this.runden; i++)
             {
+                //irgendwas stimmt hier nicht
                 System.out.println("Sieger der Runde " + i
                         + " ist Ritter Nummer "
                         + model.rumble(this.teilnehmer, false) + "!");
@@ -30,6 +31,7 @@ public class InputController
         }
         else
         {
+            //das geht schon 1a
             System.out.println("Sieger ist Ritter Nummer "
                     + model.rumble(this.teilnehmer, true) + "!");
         }

@@ -5,8 +5,8 @@ public class Start
 
     public static void main(String[] args)
     {
-        InputController controller = new InputController();
-        controller.ini();
+        Controller controller = new Controller();
+        controller.run();
 
     }
 

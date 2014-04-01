@@ -1,56 +1,78 @@
 package lucas;
 
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Scanner;
-
 
 public class InputController
 {
+    protected LinkedList<Ritter> teilnehmer = new LinkedList<Ritter>();
 
-    private int sides;
-    private int amount;
-    private List<Integer> diceResults;
-    private double expectedValues;
-    private List<Double> approximateErrors;
+    protected int anzahl = 1;
 
-    public void run()
+    protected int runden;
+
+    public void ini()
     {
         this.getParams();
-        this.roll();
-        this.eval();
-        this.show();
+
+        this.sortTeilnehmer();
+
+        RumbleModel model = new RumbleModel();
+
+        if (1 < this.runden)
+        {
+            for (int i = 1; i <= this.runden; i++)
+            {
+                System.out.println("Sieger der Runde " + i
+                        + " ist Ritter Nummer "
+                        + model.rumble(this.teilnehmer, false) + "!");
+            }
+        }
+        else
+        {
+            System.out.println("Sieger ist Ritter Nummer "
+                    + model.rumble(this.teilnehmer, true) + "!");
+        }
+
+        System.out.println("done");
     }
 
     public void getParams()
     {
         Scanner in = new Scanner(System.in);
+        int hit;
+        System.out
+                .print("Trefferwahrscheinlichkeit (zwischen 1 und 99) für Ritter eingeben oder 0 zum Abbruch\n");
+        do
+        {
+            System.out.println("Ritter Nummer " + anzahl + " :");
+            hit = in.nextInt();
+            if (0 > hit || 99 < hit)
+            {
+                System.out.println("zwischen 1 und 99!");
+                continue;
+            }
+            else if (0 != hit)
+            {
+                Ritter ritter = new Ritter();
+                ritter.setHit(hit);
+                ritter.setId(anzahl);
+                teilnehmer.add(ritter);
+                this.anzahl++;
+            }
 
-        System.out.print("Anzahl der Seiten eingeben:");
-        this.sides = in.nextInt();
+        } while (0 != hit);
 
-        System.out.print("Anzahl der Würfe eingeben:");
-        this.amount = in.nextInt();
+        System.out.println("Anzahl der Runden eingeben:");
+
+        this.runden = in.nextInt();
 
         in.close();
     }
 
-    public void roll()
+    public void sortTeilnehmer()
     {
-        DiceModel dice = new DiceModel(this.sides);
-        this.diceResults = dice.roll(this.amount);
-    }
-
-    public void eval()
-    {
-        EvalModel eval = new EvalModel(this.diceResults, this.amount, this.sides);
-        
-        this.expectedValues = eval.expectedValues();
-        this.approximateErrors = eval.approximateErrors();
-    }
-
-    public void show()
-    {
-        ResultShow show = new ResultShow();
-        show.show(this.diceResults, this.approximateErrors, this.expectedValues);
+        SortModel sort = new SortModel(this.teilnehmer);
+        this.teilnehmer = sort.bubbleSort();
     }
 }

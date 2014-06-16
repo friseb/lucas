@@ -20,7 +20,7 @@ public class SortModel
             swapped = false;
             for (int i = 0; i < size - 1; i++)
             {
-                if (this.ritter.get(i).hit > this.ritter.get(i + 1).hit)
+                if (this.ritter.get(i).getHit() > this.ritter.get(i + 1).getHit())
                 {
                     Ritter helper = this.ritter.get(i);
                     this.ritter.set(i, this.ritter.get(i + 1));
@@ -28,7 +28,7 @@ public class SortModel
                     swapped = true;
                 }
             }
-        } while (true == swapped);
+        } while (swapped);
 
         return this.ritter;
     }

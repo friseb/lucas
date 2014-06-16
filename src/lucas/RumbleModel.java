@@ -24,7 +24,7 @@ public class RumbleModel
                     b = teilnehmer.get(i + 1).getId();
                 }
 
-                if (rand.nextInt(99) + 1 <= teilnehmer.get(i).getHit())
+                if (rand.nextInt(100) < teilnehmer.get(i).getHit())
                 {
                     if (detail)
                     {

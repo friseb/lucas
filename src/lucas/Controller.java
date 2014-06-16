@@ -30,9 +30,9 @@ public class Controller
         {
             System.out.println("Ritter Nummer " + anzahl + " :");
             hit = in.nextInt();
-            if (0 > hit || 99 < hit)
+            if (0 > hit || 100 < hit)
             {
-                System.out.println("zwischen 1 und 99!");
+                System.out.println("zwischen 1 und 100!");
                 continue;
             }
             else if (0 != hit)

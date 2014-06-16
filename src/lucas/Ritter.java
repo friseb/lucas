@@ -2,9 +2,9 @@ package lucas;
 
 public class Ritter
 {
-    protected int hit;
+    private int hit;
     
-    protected int id;
+    private int id;
 
     public int getId()
     {
